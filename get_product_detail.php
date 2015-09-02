@@ -4,8 +4,7 @@
   // connection to db
   $db = new DB_CONNECT();
 
-//check exist data
-  $_GET['pid'] = 1;
+  //check exist data  
   if (isset($_GET['pid'])) {
     $pid = $_GET['pid'];
 
