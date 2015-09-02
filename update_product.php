@@ -10,6 +10,7 @@
     require_once "db_connection.php";
 
     $db = new DB_CONNECT();
+    $db = $db->connect();
     $sql = "UPDATE products SET name = '$name', price = '$price', description = '$description' WHERE pid = $pid";
     $result = mysqli_query($db , $sql);
 

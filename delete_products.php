@@ -7,6 +7,7 @@
     require_once "db_connection.php";
 
     $db = new DB_CONNECT();
+    $db = $db->connect();
     $sql = "DELETE FROM products WHERE pid = $pid";
     $result = mysqli_query($db , $sql);
 

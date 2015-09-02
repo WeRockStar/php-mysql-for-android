@@ -1,7 +1,7 @@
 <?php
   // array for JSON response
   $response = array();
-  //check for require field
+  //check for require field  
   if(isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description']) ){
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -9,12 +9,13 @@
 
     require_once "db_connection.php";
     $db = new DB_CONNECT();
+    $db = $db->connect();
     //sql statements
     $sql = "INSERT INTO products(name, price, description) VALUES('$name', '$price', '$description')";
     //query
-    $db->mysqli_query($sql);
+    $result = mysqli_query($db , $sql);
 
-    if ($db){
+    if ($result){
       // successfully inserted into database
        $response["success"] = 1;
        $response["message"] = "Product successfully created.";

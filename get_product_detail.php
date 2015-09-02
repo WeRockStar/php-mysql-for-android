@@ -1,27 +1,25 @@
 <?php
-  $response = array();
-  require_once "db_connection.php";
-  // connection to db
-  $db = new DB_CONNECT();
 
-  //check exist data
-  if (isset($_GET['pid'])) {
+$response = array();
+require_once "./db_connection.php";
+// connection to db
+$db = new DB_CONNECT();
+$db = $db->connect();
+
+//check exist data
+if (isset($_GET['pid'])) {
     $pid = $_GET['pid'];
 
     $sql = "SELECT *FROM products WHERE pid = $pid";
-    $resul = "";
-    try {
-        $result = $db->mysqli_query($sql);
-    } catch (Exception $e) {
-      echo mysqli_connect_error();
-    }
+
+    $result = mysqli_query($db , $sql);
 
     if ($result) {
-      //count of row
-      if ($result->num_rows > 0){
-        $result = mysqli_fetch_array($result);
+        //count of row
+        if ($result->num_rows > 0) {
+            $result = mysqli_fetch_array($result);
 
-        $product = array();
+            $product = array();
             $product["pid"] = $result["pid"];
             $product["name"] = $result["name"];
             $product["price"] = $result["price"];
@@ -38,27 +36,27 @@
 
             // echoing JSON response
             echo json_encode($response);
-      }else {
-        $response["success"] = 0;
-        $response["message"] = "No product found";
-        //to json
-        echo json_encode($response);
-      }
+        } else {
+            $response["success"] = 0;
+            $response["message"] = "No product found";
+            //to json
+            echo json_encode($response);
+        }
     } else {
-      // no product found
+        // no product found
         $response["success"] = 0;
         $response["message"] = "No product found";
 
         // echo no users JSON
         echo json_encode($response);
     }
-  }else {
+} else {
     // required field is missing
     $response["success"] = 0;
     $response["message"] = "Required field(s) is missing";
 
     // echoing JSON response
     echo json_encode($response);
-  }
-  $db->close();
- ?>
+}
+$db->close();
+?>

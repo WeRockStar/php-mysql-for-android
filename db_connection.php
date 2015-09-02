@@ -4,16 +4,10 @@
     function __construct(){
       $this->connect();
     }
-
-    //destruct
-    function __destruct(){
-      //$this->close();
-    }
-
     function connect(){
       require_once "db_config.php";
       //connection db
-      $conn = @new mysqli(server , username , password , database);
+      $conn = @mysqli_connect("localhost" , "root" , "" , "android_mysql");
 
       if($conn->connect_error){
          echo "Connection Error : ".$conn->connect_error;
@@ -21,11 +15,6 @@
         //echo "Success";
       }
       return $conn;
-    }
-
-    function close(){
-      $conn = $this->connect();
-      $conn->close();
     }
   }
 

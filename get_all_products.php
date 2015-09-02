@@ -1,13 +1,14 @@
 <?php
   $response = array();
-  require_once "db_connection.php";
+  require_once "./db_connection.php";
 
   //connect to db
   $db = new DB_CONNECT();
+  $db = $db->connect();
   $sql = "SELECT * FROM products";
   $result = mysqli_query($db , $sql);
   //now of row
-  if($db->num_rows > 0) {
+  if($result->num_rows > 0) {
     $response["products"] = array();
     while ($row = mysqli_fetch_array($result)) {
         // temp user array
