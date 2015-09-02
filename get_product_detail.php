@@ -4,20 +4,21 @@
   // connection to db
   $db = new DB_CONNECT();
 
-  //check exist data  
+  //check exist data
   if (isset($_GET['pid'])) {
     $pid = $_GET['pid'];
 
     $sql = "SELECT *FROM products WHERE pid = $pid";
+    $resul = "";
     try {
-        $result = mysqli_query($db , $sql);
+        $result = $db->mysqli_query($sql);
     } catch (Exception $e) {
       echo mysqli_connect_error();
     }
 
     if ($result) {
       //count of row
-      if ($db->num_rows){
+      if ($result->num_rows > 0){
         $result = mysqli_fetch_array($result);
 
         $product = array();
