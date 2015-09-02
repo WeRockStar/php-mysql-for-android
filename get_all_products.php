@@ -5,7 +5,7 @@
   //connect to db
   $db = new DB_CONNECT();
   $sql = "SELECT * FROM products";
-  $result = mysqli_query($db , $sql);  
+  $result = mysqli_query($db , $sql);
   //now of row
   if($db->num_rows > 0) {
     $response["products"] = array();
