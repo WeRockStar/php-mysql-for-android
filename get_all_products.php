@@ -33,4 +33,5 @@
     // echo no users JSON
     echo json_encode($response);
   }
+  $db->close();
  ?>

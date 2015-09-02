@@ -21,6 +21,7 @@
 
       //to json
       echo json_encode($response);
+      $db->close();
     }
   }else {
     $response["success"] = 0;

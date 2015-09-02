@@ -20,6 +20,7 @@
 
       //to json
       echo json_encode($response);
+      $db->close();
     }else { }
   }else {
     //data is missing
